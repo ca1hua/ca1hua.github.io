@@ -22,20 +22,25 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="VNCTF2024">
+  <meta name="description" content="VNCTF2024Checkin上来就是一个打砖块游戏，一般这种web题目和游戏没什么关系的，找的是游戏逻辑。   于是找源代码中的游戏逻辑，看到了game.js  打开看到了最终的游戏函数  这个字符串使用了十六进制编码（Hexadecimal），每两个字符代表一个字节。转换为ASCII文本后，我们得到： V N C T F { W 3 1 c 0 m 3 _ t 0 _ V N C T F _">
 <meta property="og:type" content="article">
 <meta property="og:title" content="VNCTF复现___有时间就更新">
 <meta property="og:url" content="http://example.com/2024/02/23/VNCTF%E5%A4%8D%E7%8E%B0___%E6%9C%89%E6%97%B6%E9%97%B4%E5%B0%B1%E6%9B%B4%E6%96%B0/index.html">
 <meta property="og:site_name" content="❤ca1hua❤">
-<meta property="og:description" content="VNCTF2024">
+<meta property="og:description" content="VNCTF2024Checkin上来就是一个打砖块游戏，一般这种web题目和游戏没什么关系的，找的是游戏逻辑。   于是找源代码中的游戏逻辑，看到了game.js  打开看到了最终的游戏函数  这个字符串使用了十六进制编码（Hexadecimal），每两个字符代表一个字节。转换为ASCII文本后，我们得到： V N C T F { W 3 1 c 0 m 3 _ t 0 _ V N C T F _">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://pic.imgdb.cn/item/65d890129f345e8d03b3423f.jpg">
+<meta property="og:image" content="https://pcsdata.baidu.com/thumbnail/6f10c1c12vd602ce8a125f2b19e07ebd?fid=1100258353972-16051585-1078934160805881&amp;rt=pr&amp;sign=FDTAER-yUdy3dSFZ0SVxtzShv1zcMqd-b9sqCtn%2BgxLcKFPCIoPlYI0l%2Bkg%3D&amp;expires=48h&amp;chkv=0&amp;chkbd=0&amp;chkpc=&amp;dp-logid=97705085572878822&amp;dp-callid=0&amp;time=1708696800&amp;bus_no=26&amp;size=c1600_u1600&amp;quality=100&amp;vuk=-&amp;ft=video">
+<meta property="og:image" content="https://pcsdata.baidu.com/thumbnail/77ba0167ap9d18805036a0f397756a03?fid=1100258353972-16051585-633593871540862&rt=pr&sign=FDTAER-yUdy3dSFZ0SVxtzShv1zcMqd-+ueTpJt1FqKS/hXZzSZknJa5UfM=&expires=48h&chkv=0&chkbd=0&chkpc=&dp-logid=97899798441439598&dp-callid=0&time=1708696800&bus_no=26&size=c1600_u1600&quality=100&vuk=-&ft=video">
+<meta property="og:image" content="https://pcsdata.baidu.com/thumbnail/c17a151c6u2937e19cb20cc6398477e4?fid=1100258353972-16051585-197267071060874&rt=pr&sign=FDTAER-yUdy3dSFZ0SVxtzShv1zcMqd-Fo2Nj/KC23/S/I+cwbKFrJuUZbs=&expires=48h&chkv=0&chkbd=0&chkpc=&dp-logid=97899798441439598&dp-callid=0&time=1708696800&bus_no=26&size=c1600_u1600&quality=100&vuk=-&ft=video">
+<meta property="og:image" content="https://pcsdata.baidu.com/thumbnail/294c5e5cbse165acbed4f90e768da1f2?fid=1100258353972-16051585-423662084631714&amp;rt=pr&amp;sign=FDTAER-yUdy3dSFZ0SVxtzShv1zcMqd-OS3a5tNFSnflONskI4i3ngbzc6E%3D&amp;expires=48h&amp;chkv=0&amp;chkbd=0&amp;chkpc=&amp;dp-logid=98475022112439554&amp;dp-callid=0&amp;time=1708696800&amp;bus_no=26&amp;size=c1600_u1600&amp;quality=100&amp;vuk=-&amp;ft=video">
+<meta property="og:image" content="https://pcsdata.baidu.com/thumbnail/d12a0fee5vf5a2a2543fe5ba228ab3c5?fid=1100258353972-16051585-434397614039985&rt=pr&sign=FDTAER-yUdy3dSFZ0SVxtzShv1zcMqd-FdQxnrTkAoJKKDvSnMuPJ67CWfQ=&expires=48h&chkv=0&chkbd=0&chkpc=&dp-logid=98529785579680266&dp-callid=0&time=1708700400&bus_no=26&size=c1600_u1600&quality=100&vuk=-&ft=video">
+<meta property="og:image" content="https://img2024.cnblogs.com/blog/3259464/202402/3259464-20240218000759049-953137434.png">
 <meta property="article:published_time" content="2024-02-23T10:08:15.000Z">
-<meta property="article:modified_time" content="2024-02-23T12:31:36.609Z">
+<meta property="article:modified_time" content="2024-02-23T15:15:20.069Z">
 <meta property="article:author" content="陈曦">
 <meta property="article:tag" content="CTF">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://pic.imgdb.cn/item/65d890129f345e8d03b3423f.jpg">
+<meta name="twitter:image" content="https://pcsdata.baidu.com/thumbnail/6f10c1c12vd602ce8a125f2b19e07ebd?fid=1100258353972-16051585-1078934160805881&amp;rt=pr&amp;sign=FDTAER-yUdy3dSFZ0SVxtzShv1zcMqd-b9sqCtn%2BgxLcKFPCIoPlYI0l%2Bkg%3D&amp;expires=48h&amp;chkv=0&amp;chkbd=0&amp;chkpc=&amp;dp-logid=97705085572878822&amp;dp-callid=0&amp;time=1708696800&amp;bus_no=26&amp;size=c1600_u1600&amp;quality=100&amp;vuk=-&amp;ft=video">
 
 <link rel="canonical" href="http://example.com/2024/02/23/VNCTF%E5%A4%8D%E7%8E%B0___%E6%9C%89%E6%97%B6%E9%97%B4%E5%B0%B1%E6%9B%B4%E6%96%B0/">
 
@@ -210,7 +215,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2024-02-23 18:08:15 / 修改时间：20:31:36" itemprop="dateCreated datePublished" datetime="2024-02-23T18:08:15+08:00">2024-02-23</time>
+              <time title="创建时间：2024-02-23 18:08:15 / 修改时间：23:15:20" itemprop="dateCreated datePublished" datetime="2024-02-23T18:08:15+08:00">2024-02-23</time>
             </span>
 
           
@@ -224,7 +229,27 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="VNCTF2024"><a href="#VNCTF2024" class="headerlink" title="VNCTF2024"></a>VNCTF2024</h2><p><img src="https://pic.imgdb.cn/item/65d890129f345e8d03b3423f.jpg"></p>
+        <h2 id="VNCTF2024"><a href="#VNCTF2024" class="headerlink" title="VNCTF2024"></a>VNCTF2024</h2><h3 id="Checkin"><a href="#Checkin" class="headerlink" title="Checkin"></a>Checkin</h3><p>上来就是一个打砖块游戏，一般这种web题目和游戏没什么关系的，找的是游戏逻辑。</p>
+<img src="https://pcsdata.baidu.com/thumbnail/6f10c1c12vd602ce8a125f2b19e07ebd?fid=1100258353972-16051585-1078934160805881&amp;rt=pr&amp;sign=FDTAER-yUdy3dSFZ0SVxtzShv1zcMqd-b9sqCtn%2BgxLcKFPCIoPlYI0l%2Bkg%3D&amp;expires=48h&amp;chkv=0&amp;chkbd=0&amp;chkpc=&amp;dp-logid=97705085572878822&amp;dp-callid=0&amp;time=1708696800&amp;bus_no=26&amp;size=c1600_u1600&amp;quality=100&amp;vuk=-&amp;ft=video" style="zoom:33%;" />
+
+<p>于是找源代码中的游戏逻辑，看到了game.js</p>
+<p><img src="https://pcsdata.baidu.com/thumbnail/77ba0167ap9d18805036a0f397756a03?fid=1100258353972-16051585-633593871540862&rt=pr&sign=FDTAER-yUdy3dSFZ0SVxtzShv1zcMqd-+ueTpJt1FqKS/hXZzSZknJa5UfM=&expires=48h&chkv=0&chkbd=0&chkpc=&dp-logid=97899798441439598&dp-callid=0&time=1708696800&bus_no=26&size=c1600_u1600&quality=100&vuk=-&ft=video"></p>
+<p>打开看到了最终的游戏函数</p>
+<p><img src="https://pcsdata.baidu.com/thumbnail/c17a151c6u2937e19cb20cc6398477e4?fid=1100258353972-16051585-197267071060874&rt=pr&sign=FDTAER-yUdy3dSFZ0SVxtzShv1zcMqd-Fo2Nj/KC23/S/I+cwbKFrJuUZbs=&expires=48h&chkv=0&chkbd=0&chkpc=&dp-logid=97899798441439598&dp-callid=0&time=1708696800&bus_no=26&size=c1600_u1600&quality=100&vuk=-&ft=video"></p>
+<p>这个字符串使用了十六进制编码（Hexadecimal），每两个字符代表一个字节。转换为ASCII文本后，我们得到：</p>
+<p>V N C T F { W 3 1 c 0 m 3 _ t 0 _ V N C T F _ 2 0 2 4 _ g @ o d _ J 0 B ! ! ! ! }</p>
+<p>也就是  VNCTF{W31c0m3_t0_VNCTF_2024_g@od_J0B!!!!}</p>
+<h3 id="CutePath"><a href="#CutePath" class="headerlink" title="CutePath"></a>CutePath</h3><p>经典真实背景，一般这种题目，都能搜到他的漏洞，GitHub上有记载。</p>
+<img src="https://pcsdata.baidu.com/thumbnail/294c5e5cbse165acbed4f90e768da1f2?fid=1100258353972-16051585-423662084631714&amp;rt=pr&amp;sign=FDTAER-yUdy3dSFZ0SVxtzShv1zcMqd-OS3a5tNFSnflONskI4i3ngbzc6E%3D&amp;expires=48h&amp;chkv=0&amp;chkbd=0&amp;chkpc=&amp;dp-logid=98475022112439554&amp;dp-callid=0&amp;time=1708696800&amp;bus_no=26&amp;size=c1600_u1600&amp;quality=100&amp;vuk=-&amp;ft=video" style="zoom: 67%;" />
+
+<p>直接上手</p>
+<p><img src="https://pcsdata.baidu.com/thumbnail/d12a0fee5vf5a2a2543fe5ba228ab3c5?fid=1100258353972-16051585-434397614039985&rt=pr&sign=FDTAER-yUdy3dSFZ0SVxtzShv1zcMqd-FdQxnrTkAoJKKDvSnMuPJ67CWfQ=&expires=48h&chkv=0&chkbd=0&chkpc=&dp-logid=98529785579680266&dp-callid=0&time=1708700400&bus_no=26&size=c1600_u1600&quality=100&vuk=-&ft=video"></p>
+<p>ok，直接目录穿透了。并且看到了一个base64的编码，解密之后是账号密码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">admin:gdgm.edu.cn@M1n9K1n9P@as（账号是admin，密码是gdgm.edu.cn@M1n9K1n9P@as）</span><br><span class="line">谁家好人还想着爆破呢，斩了！！</span><br></pre></td></tr></table></figure>
+
+<p>登录之后发现就可以改名字，先保留想法，既然出现目录穿透，登录后又给了改名，那么就有可能通过改名来是实现文件的迁移。</p>
+<p>ok下面就是寻找flag的文件了，随便找，利用..&#x2F;都看看</p>
+<p><img src="https://img2024.cnblogs.com/blog/3259464/202402/3259464-20240218000759049-953137434.png"></p>
 
     </div>
 
@@ -305,7 +330,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#VNCTF2024"><span class="nav-number">1.</span> <span class="nav-text">VNCTF2024</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#VNCTF2024"><span class="nav-number">1.</span> <span class="nav-text">VNCTF2024</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Checkin"><span class="nav-number">1.1.</span> <span class="nav-text">Checkin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CutePath"><span class="nav-number">1.2.</span> <span class="nav-text">CutePath</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
