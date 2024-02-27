@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="中断是硬件设备中很重要的部分。 对于蓝桥杯的51单片机来说一共有五个中断源。按照优先级来看这五个中断源应该是这样排序的： 123450 (0x0003) 外部中断0：INT01 (0x000B) 定时&#x2F;计数器0：TF02 (0x0013) 外部中断1：INT13 (0x001B) 定时&#x2F;计数器1：TF14 (0x0023) 串口中断：RI&#x2F;TI  外部中断0触发条件是P32按下按键S5   外部中">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于51单片机中的中断">
+<meta property="og:url" content="http://example.com/2024/02/22/%E5%85%B3%E4%BA%8E51%E5%8D%95%E7%89%87%E6%9C%BA%E7%9A%84%E4%B8%AD%E6%96%AD/index.html">
+<meta property="og:site_name" content="❤ca1hua❤">
+<meta property="og:description" content="中断是硬件设备中很重要的部分。 对于蓝桥杯的51单片机来说一共有五个中断源。按照优先级来看这五个中断源应该是这样排序的： 123450 (0x0003) 外部中断0：INT01 (0x000B) 定时&#x2F;计数器0：TF02 (0x0013) 外部中断1：INT13 (0x001B) 定时&#x2F;计数器1：TF14 (0x0023) 串口中断：RI&#x2F;TI  外部中断0触发条件是P32按下按键S5   外部中">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ca1hua.oss-cn-beijing.aliyuncs.com/test/011cd2153ddf1955a426d0da1c9aadf.png">
+<meta property="og:image" content="https://ca1hua.oss-cn-beijing.aliyuncs.com/test/Snipaste_2024-02-27_19-48-19.png">
+<meta property="og:image" content="https://ca1hua.oss-cn-beijing.aliyuncs.com/test/Snipaste_2024-02-27_19-53-06.png">
+<meta property="og:image" content="https://ca1hua.oss-cn-beijing.aliyuncs.com/test/Snipaste_2024-02-27_20-14-21.png">
+<meta property="og:image" content="https://ca1hua.oss-cn-beijing.aliyuncs.com/test/Snipaste_2024-02-27_20-45-44.png">
+<meta property="og:image" content="https://ca1hua.oss-cn-beijing.aliyuncs.com/test/Snipaste_2024-02-27_21-02-14.png">
+<meta property="og:image" content="https://ca1hua.oss-cn-beijing.aliyuncs.com/test/Snipaste_2024-02-27_21-28-38.png">
+<meta property="og:image" content="https://ca1hua.oss-cn-beijing.aliyuncs.com/test/Snipaste_2024-02-27_21-32-56.png">
+<meta property="article:published_time" content="2024-02-22T09:08:15.000Z">
+<meta property="article:modified_time" content="2024-02-27T16:06:14.258Z">
+<meta property="article:author" content="陈曦">
+<meta property="article:tag" content="硬件">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ca1hua.oss-cn-beijing.aliyuncs.com/test/011cd2153ddf1955a426d0da1c9aadf.png">
+
+<link rel="canonical" href="http://example.com/2024/02/22/%E5%85%B3%E4%BA%8E51%E5%8D%95%E7%89%87%E6%9C%BA%E7%9A%84%E4%B8%AD%E6%96%AD/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>关于51单片机中的中断 | ❤ca1hua❤</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">❤ca1hua❤</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description"> </p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/02/22/%E5%85%B3%E4%BA%8E51%E5%8D%95%E7%89%87%E6%9C%BA%E7%9A%84%E4%B8%AD%E6%96%AD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/20240222142431.jpg">
+      <meta itemprop="name" content="陈曦">
+      <meta itemprop="description" content="爱人先爱己，择人先问心，caihua祝你天天开心！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="❤ca1hua❤">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          关于51单片机中的中断
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-02-22 17:08:15" itemprop="dateCreated datePublished" datetime="2024-02-22T17:08:15+08:00">2024-02-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-02-28 00:06:14" itemprop="dateModified" datetime="2024-02-28T00:06:14+08:00">2024-02-28</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>中断是硬件设备中很重要的部分。</p>
+<p>对于蓝桥杯的51单片机来说一共有五个中断源。按照优先级来看这五个中断源应该是这样排序的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">0 (0x0003) 外部中断0：INT0</span><br><span class="line">1 (0x000B) 定时/计数器0：TF0</span><br><span class="line">2 (0x0013) 外部中断1：INT1</span><br><span class="line">3 (0x001B) 定时/计数器1：TF1</span><br><span class="line">4 (0x0023) 串口中断：RI/TI</span><br></pre></td></tr></table></figure>
+
+<p><strong>外部中断0</strong>触发条件是P32按下按键S5   <strong>外部中断1</strong>触发条件是P33按下按键S4</p>
+<p>若想找到一个要打开一个中断从头到尾，需要做打开哪些部分。可以看下图。</p>
+<img src="https://ca1hua.oss-cn-beijing.aliyuncs.com/test/011cd2153ddf1955a426d0da1c9aadf.png" style="zoom:80%;" />
+
+<p>同时从上面也能看到各个寄存器，我们一一来说明：</p>
+<h5 id="TMOD"><a href="#TMOD" class="headerlink" title="TMOD"></a>TMOD</h5><p>该寄存器就是用来选择模式的，见名知意，T开头（定时器）的MOD（模式），就是它是来决定定时中断的模式的见图</p>
+<img src="https://ca1hua.oss-cn-beijing.aliyuncs.com/test/Snipaste_2024-02-27_19-48-19.png" style="zoom:80%;" />
+
+<p><strong>IE</strong></p>
+<p>IE是啥呢，就是使能中断的嘛！令1就开启。</p>
+<p><img src="https://ca1hua.oss-cn-beijing.aliyuncs.com/test/Snipaste_2024-02-27_19-53-06.png"></p>
+<p><strong>IP</strong></p>
+<p>IP是什么，就是提供一种便利的方法，用来在根据需求要更改优先级的顺序时使用的，在正常优先级的顺序下，先执行高级的，再执行低级的。</p>
+<p><img src="https://ca1hua.oss-cn-beijing.aliyuncs.com/test/Snipaste_2024-02-27_20-14-21.png"></p>
+<p><strong>TCON</strong></p>
+<p>TCON就是中断请求标志寄存器详细如下，给外部中断和</p>
+<p><img src="https://ca1hua.oss-cn-beijing.aliyuncs.com/test/Snipaste_2024-02-27_20-45-44.png"></p>
+<p><strong>SCON</strong></p>
+<p>也是中断标标志寄存器，同时他也有设置串口中断模式的能力（后面这个功能可以和前面提到的TMOD对比学习）</p>
+<p><img src="https://ca1hua.oss-cn-beijing.aliyuncs.com/test/Snipaste_2024-02-27_21-02-14.png"></p>
+<p>在串口通信中，TI和RI很常用的 其为1时代表发送或接受完成，要手动给它清零，在程序中经常进行编程使用。</p>
+<p> 在串口中还有<strong>波特率</strong>这一个十分重要的概念，是指单位时间内传输的位数。异步串行通信的设备的波特率要保持一致，虽然波特率很难算，但是我们可以通过查表的方式获得波特率。如图</p>
+<p><img src="https://ca1hua.oss-cn-beijing.aliyuncs.com/test/Snipaste_2024-02-27_21-28-38.png"></p>
+<img src="https://ca1hua.oss-cn-beijing.aliyuncs.com/test/Snipaste_2024-02-27_21-32-56.png" style="zoom:67%;" />
+
+<p>（注意是sfr AUXR &#x3D; 0x8e; 这个是蓝桥杯单片机才需要加的，至少我的reg52.h头文件没有这个）</p>
+<p>到这里寄存器和概念基本就说好了。我们来进行实例代码讲解，以下demo仅书写中断函数和中断服务函数。</p>
+<p><strong>Demo_1</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">外部中断<span class="number">1</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">InitTime1</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	IT1 = <span class="number">1</span>;	<span class="comment">//设置IT1 = 1 使其低电平触发</span></span><br><span class="line">	EX1 = <span class="number">1</span>;	<span class="comment">//外部中断1 打开</span></span><br><span class="line">	EA = <span class="number">1</span>;		<span class="comment">//总开关打开</span></span><br><span class="line">    <span class="comment">//这样就通了，IP我们可以不设置，一般用它默认优先级就好了，如果特殊需求再设置。</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">Serv_Time1</span><span class="params">()</span> interrupt 2 <span class="comment">//外部中断1 对应的中断号是 2</span></span><br><span class="line">&#123;</span><br><span class="line">	SelectHC573(<span class="number">4</span>);</span><br><span class="line">	L8 = <span class="number">0</span>;</span><br><span class="line">	Delay(<span class="number">60000</span>);</span><br><span class="line">	Delay(<span class="number">60000</span>);</span><br><span class="line">	L8 = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Demo_2</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">计时器</span><br><span class="line"><span class="type">void</span> <span class="title function_">InitTimer</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	TMOD = <span class="number">0x01</span>;				 <span class="comment">// TMOD来实现计数器0的模式，0x01就是定时器0的16位定时器/计数器，最大子为65535</span></span><br><span class="line">	TH0 = (<span class="number">65535</span> - <span class="number">50000</span>) / <span class="number">256</span>; <span class="comment">// 高八位</span></span><br><span class="line">	TL0 = (<span class="number">65535</span> - <span class="number">50000</span>) % <span class="number">256</span>; <span class="comment">// 低八位</span></span><br><span class="line">	ET0 = <span class="number">1</span>;<span class="comment">//</span></span><br><span class="line">	EA = <span class="number">1</span>;</span><br><span class="line">	TR0 = <span class="number">1</span>;<span class="comment">//GATE为0 使用的是 TR0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">unsigned</span> <span class="type">char</span> count = <span class="number">0</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">ServiceTimer</span><span class="params">()</span> interrupt 1 <span class="comment">//计数器0的 中断源是1</span></span><br><span class="line">&#123;</span><br><span class="line">	TH0 = (<span class="number">65535</span> - <span class="number">50000</span>) / <span class="number">256</span>;</span><br><span class="line">	TL0 = (<span class="number">65535</span> - <span class="number">50000</span>) % <span class="number">256</span>;</span><br><span class="line">	count++;</span><br><span class="line">	<span class="keyword">if</span>(count % <span class="number">10</span> == <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		L1 = ~L1;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(count == <span class="number">100</span> )</span><br><span class="line">	&#123;</span><br><span class="line">		L8 = ~L8;</span><br><span class="line">		count = <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Demo_3</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">串口基础</span><br><span class="line">sfr AUXR = <span class="number">0x8e</span>;<span class="comment">//不要忘了，串口通信，reg52.h里面没有写AUXR的地址</span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> Init_</span><br><span class="line">&#123;</span><br><span class="line">	TMOD = <span class="number">0x20</span>;</span><br><span class="line">	TH1 = TL1 =<span class="number">0xfd</span>;</span><br><span class="line">	SCON = <span class="number">0x50</span>;</span><br><span class="line">	AUXR = <span class="number">0x00</span>;</span><br><span class="line">	TR1= <span class="number">1</span>;</span><br><span class="line">	ES = <span class="number">1</span>;</span><br><span class="line">	EA = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">unsigned</span> <span class="type">char</span> dat = <span class="number">0</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">Service_Uart</span><span class="params">()</span> interrupt 4</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(RI == <span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		RI = <span class="number">0</span>;</span><br><span class="line">		dat = SBUF;</span><br><span class="line">		dat++;</span><br><span class="line">		SBUF = dat;</span><br><span class="line">		<span class="keyword">while</span>(TI == <span class="number">0</span>);<span class="comment">//</span></span><br><span class="line">		TI = <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%A1%AC%E4%BB%B6/" rel="tag"># 硬件</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/02/22/hello-world/" rel="prev" title="Hello World">
+      <i class="fa fa-chevron-left"></i> Hello World
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2024/02/22/cold-1/" rel="next" title="cold">
+      cold <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#TMOD"><span class="nav-number">1.</span> <span class="nav-text">TMOD</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="陈曦"
+      src="/images/20240222142431.jpg">
+  <p class="site-author-name" itemprop="name">陈曦</p>
+  <div class="site-description" itemprop="description">爱人先爱己，择人先问心，caihua祝你天天开心！</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ca1hua" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ca1hua" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2024-2 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陈曦</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
